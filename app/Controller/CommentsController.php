@@ -2,7 +2,7 @@
 
 class CommentsController extends AppController {
 
-	public $uses = array('Comment', 'Topic', 'User', 'Like');
+	public $uses = array('Comment', 'Topic', 'User');
 
 	public function create(){
 

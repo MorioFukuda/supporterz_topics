@@ -2,7 +2,7 @@
 
 class TopicsController extends AppController {
 
-	public $uses = array('Topic', 'User', 'Comment', 'Like');
+	public $uses = array('Topic', 'User', 'Comment');
 
 	public function index(){
 
