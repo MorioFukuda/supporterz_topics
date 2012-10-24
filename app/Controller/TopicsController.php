@@ -2,7 +2,7 @@
 
 class TopicsController extends AppController {
 
-	public $uses = array('Topic', 'User');
+	public $uses = array('Topic', 'User', 'Comment', 'Like');
 
 	public function index(){
 
@@ -59,6 +59,9 @@ class TopicsController extends AppController {
 			$record = $this->Topic->find('first', $options);
 //			debug($record);
 
+			$comments = $this->Comment->find('all', $options);
+//			debug($comments);
+
 			//トピックが無かったらトピックスのトップページへリダイレクト。
 			if(!$record){
 				$this->Session->setFlash('指定されたトピックはありません。');
@@ -86,6 +89,7 @@ class TopicsController extends AppController {
 			//ビューに渡してあげる
 			$this->set('topic', $topic);
 			$this->set('username', $username);
+			$this->set('comments', $comments);
 
 		}else{
 

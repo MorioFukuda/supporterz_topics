@@ -14,3 +14,22 @@ p#topic_body{
 	top: -60px;
 	font-size: 150%;
 }
+
+div.comment{
+	margin: 10px 30px;
+	padding: 20px;
+	background: #f1f1f1;
+}
+
+div.comment *{
+	margin: 0;
+}
+
+p.comment_data{
+	text-align: right;
+}
+
+#CommentCreateForm{
+	width: 80%;
+	margin: 10px 30px;
+}
