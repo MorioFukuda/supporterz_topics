@@ -52,7 +52,8 @@ class TopicsController extends AppController {
 
 			//クエリの条件を設定
 			$options = array(
-				'conditions' => array('Topic.id' => $topic_id)
+				'conditions' => array('Topic.id' => $topic_id),
+				'recursive' => 2 
 			);
 
 			//$topic_idを使って、Topicモデルからレコードを探して、$recordに格納する。
@@ -70,6 +71,7 @@ class TopicsController extends AppController {
 
 			//必要なところだけを取り出す。
 			$topic = $record['Topic'];
+			$like_topic = $record['Like'];
 //			debug($topic);
 
 			//クエリの条件を設定
@@ -88,6 +90,7 @@ class TopicsController extends AppController {
 
 			//ビューに渡してあげる
 			$this->set('topic', $topic);
+			$this->set('like_topic', $like_topic);
 			$this->set('username', $username);
 			$this->set('comments', $comments);
 

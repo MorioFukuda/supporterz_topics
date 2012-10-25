@@ -10,9 +10,17 @@ p#topic_data{
 
 p#topic_body{
 	margin: 30px;
+	margin-bottom: -60px;
 	position: relative;
 	top: -60px;
 	font-size: 150%;
+}
+
+p#like_topic{
+	text-align: right;
+	margin: 15px 30px;
+	padding: 10px;
+	background: #EDF9FF;
 }
 
 div.comment{
@@ -27,6 +35,13 @@ div.comment *{
 
 p.comment_data{
 	text-align: right;
+}
+
+p.like_comment{
+	text-align: right;
+	margin: 10px 0 0 0;
+	padding: 10px;
+	background: #EDF9FF;
 }
 
 #CommentCreateForm{
