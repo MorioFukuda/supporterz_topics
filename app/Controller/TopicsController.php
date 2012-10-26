@@ -2,7 +2,7 @@
 
 class TopicsController extends AppController {
 
-	public $uses = array('Topic', 'User', 'Comment');
+	public $uses = array('Topic', 'User', 'Comment', 'Like');
 
 	public function index(){
 
@@ -63,33 +63,35 @@ class TopicsController extends AppController {
 			$user_id = $this->Auth->user('id');
 			//debug($user_id);
 
+
+			$record['Topic']['isLiked'] = $this->Like->isLiked($user_id, 'topic', $topic_id);
+
 			//トピックにライクしている人の中にログインしているユーザーがいるかをチェックする。
 			//とりあえずfalseを代入しておく。
-			$record['Topic']['isLiked'] = false;
+//			$record['Topic']['isLiked'] = false;
 
 			//トピックにLikeしていたらtrueに変えてやる。
-			foreach($record['Like'] as $like){
-				if($like['User']['id'] === $user_id){
-					$record['Topic']['isLiked'] = true;
-					break;
-				}
-			}
-//			debug($record['Topic']['isLiked']);
+//			foreach($record['Like'] as $like){
+//				if($like['User']['id'] === $user_id){
+//					$record['Topic']['isLiked'] = true;
+//					break;
+//				}
+//			}
+//			debug($record['Topic']);
 
 			$comments = $this->Comment->find('all', $options);
 //			debug($comments[0]['Like']);
 
 			foreach($comments as &$comment){
-
-				$comment['isLiked'] = false;
+				$comment['isLiked'] = $this->Like->isLiked($user_id, 'comment', $comment['Comment']['id']);
 
 //				debug($comment['Comment']);
-
-				foreach($comment['Like'] as $like){
-					if($like['User']['id'] === $user_id){
-						$comment['isLiked'] = true;
-					}
-				}
+//
+//				foreach($comment['Like'] as $like){
+//					if($like['User']['id'] === $user_id){
+//						$comment['isLiked'] = true;
+//					}
+//				}
 			}
 //			debug($comments);
 
