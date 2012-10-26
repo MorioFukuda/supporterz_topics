@@ -12,7 +12,11 @@ Topic Controller > View Action
 	<?php echo h($topic['body']); ?>
 </p>
 <p id="like_topic">
-	<?php echo $this->Html->link('いいね！', array('controller' => 'Likes', 'action' => 'likeTopic/', $topic['id'])) ?></br >
+	<?php if($topic['isLiked']){ ?>
+		<strong>いいよね！</strong></br >
+	<?php }else{ ?>
+		<?php echo $this->Html->link('いいね！', array('controller' => 'Likes', 'action' => 'likeTopic/', $topic['id'])) ?></br >
+	<?php } ?>
 	<?php foreach($like_topic as $like): ?>
 
 	<?php echo h($like['User']['username']) ?>さん
@@ -31,7 +35,11 @@ Topic Controller > View Action
 			<?php echo $this->Html->Link('削除', array('controller' => 'Comments', 'action' => 'delete/' . $row['Comment']['id'])) ?>
 		</p>
 		<p class="like_comment">
-			<?php echo $this->Html->link('いいね！', array('controller' => 'Likes', 'action' => 'likeComment/', $row['Comment']['id'])) ?></br >
+			<?php if($row['isLiked']){ ?>
+				<strong>いいよね!</strong></br >
+			<?php }else{ ?>
+				<?php echo $this->Html->link('いいね！', array('controller' => 'Likes', 'action' => 'likeComment/', $row['Comment']['id'])) ?></br >
+			<?php } ?>
 			<?php foreach($row['Like'] as $like): ?>
 			<?php echo h($like['User']['username']) ?>さん
 			<?php endforeach; ?>
